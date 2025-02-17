@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = process.env.DataBase_Connection;
+const uri = process.env.DATABase_Connection;
 let db;
 const client = new MongoClient(uri, {
   serverApi: {
@@ -8,3 +8,15 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   }
 });
+const connectDB=async()=>{
+  if(db) return ('Database Connected');
+  try{
+    db=await client.connect('Finance')
+    return db;
+  }
+  catch{
+    console.error()
+  
+  }
+}
+export default connectDB;
